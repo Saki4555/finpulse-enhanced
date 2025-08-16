@@ -1,56 +1,50 @@
-'use client';
+"use client";
 
-import { motion as m } from 'motion/react';
-import { Mail, MapPin } from 'lucide-react';
-
+import { motion as m } from "motion/react";
+import { Mail, MapPin } from "lucide-react";
+import seoulImage from "../assets/seoul-1000.webp";
+import newyorkImage from "../assets/new-york-1000.webp";
+import Image from "next/image";
+import ContactUsForm from "./contact-us-form";
 export default function Contact() {
   // Location data with office information
   const locations = [
-  {
-    id: 1,
-    city: "New York",
-    name: "Headquarters",
-    address: "123 Financial District, Suite 1000",
-    email: "info@finpulse.com",
-    image: "https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 2,
-    city: "London",
-    name: "European Office",
-    address: "456 Tech Street, London EC2A",
-    email: "europe@finpulse.com",
-    image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 3,
-    city: "Singapore",
-    name: "Asia Pacific Office",
-    address: "789 Financial Center, Singapore 018902",
-    email: "apac@finpulse.com",
-    image: "https://images.unsplash.com/photo-1557401470-14112a1750c7?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 4,
-    city: "Sydney",
-    name: "Australia Office",
-    address: "101 Collins Street, Sydney NSW 2000",
-    email: "australia@finpulse.com",
-    image: "https://images.unsplash.com/photo-1517495306999-d5e01277f9d7?auto=format&fit=crop&w=800&q=80"
-  }
-];
-
+    {
+      id: 1,
+      city: "New York",
+      name: "Headquarters",
+      address: "123 AI Innovation District, Suite 1000",
+      email: "info@likely-parents.com",
+      image: newyorkImage,
+    },
+    {
+      id: 2,
+      city: "Seoul",
+      name: "Asian Office",
+      address: "456 Tech Street, Seoul EC2A",
+      email: "seoul@likely-parents.com",
+      image: seoulImage,
+    },
+  ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-background to-muted/30 relative overflow-hidden">
-      {/* Background elements */}
+    <section
+      id="contact"
+      className="py-24 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden"
+    >
+      {/* Subtle Background elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/3 dark:bg-primary/6 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-primary/2 dark:bg-primary/4 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.06]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--primary))_1px,transparent_0)] bg-[length:80px_80px]"></div>
+        </div>
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Clean Section Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,75 +52,104 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
-            We would love to hear from you
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Get in Touch!
+          <m.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-block mb-4 px-6 py-2 bg-primary/8 dark:bg-primary/15 rounded-md border border-primary/20"
+          >
+            <span className="text-primary text-sm font-semibold tracking-wider uppercase">
+              Global Presence
+            </span>
+          </m.div>
+
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-foreground to-foreground/90 bg-clip-text text-transparent">
+              Get in Touch
             </span>
           </h2>
+          <p className="text-muted-foreground text-lg">
+            Connect with our teams pioneering emotionally intelligent AI
+          </p>
         </m.div>
 
-        {/* Location Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Enhanced Location Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {locations.map((location, index) => (
             <m.div
               key={location.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
               className="group"
             >
-              <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full">
-                {/* Location Image with Overlay */}
-                <div className="relative h-64 overflow-hidden">
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${location.image}')` }}
+              <div className="bg-card/70 backdrop-blur-sm border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full">
+                {/* Enhanced Location Image with Overlay */}
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={location.image}
+                    alt={location.city}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-                  <div className="absolute bottom-4 left-0 right-0 text-center">
-                    <h3 className="text-2xl font-bold text-foreground uppercase tracking-wider">
-                      {location.city}
-                    </h3>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
                 </div>
-                
-                {/* Location Details */}
+
+                {/* Clean Location Details */}
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-foreground mb-2">
+                  <h4 className="text-lg font-semibold text-foreground mb-4">
                     {location.name}
                   </h4>
-                  
-                  <div className="space-y-3 mt-4">
-                    <div className="flex items-start">
-                      <MapPin className="h-5 w-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
-                      <p className="text-muted-foreground">
-                        {location.address}
-                      </p>
+
+                  <div className="space-y-4">
+                    <div className="flex items-start group/item">
+                      <div className="p-2 bg-primary/10 rounded-lg mr-3 group-hover/item:bg-primary/15 transition-colors duration-300">
+                        <MapPin className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {location.address}
+                        </p>
+                      </div>
                     </div>
-                    
-                    <div className="flex items-start">
-                      <Mail className="h-5 w-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
-                      <a 
-                        href={`mailto:${location.email}`} 
-                        className="text-muted-foreground hover:text-primary transition-colors duration-300"
-                      >
-                        {location.email}
-                      </a>
+
+                    <div className="flex items-start group/item">
+                      <div className="p-2 bg-primary/10 rounded-lg mr-3 group-hover/item:bg-primary/15 transition-colors duration-300">
+                        <Mail className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <a
+                          href={`mailto:${location.email}`}
+                          className="text-muted-foreground text-sm hover:text-primary transition-colors duration-300"
+                        >
+                          {location.email}
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="mt-6">
-                    <a 
+
+                  {/* Subtle CTA */}
+                  <div className="mt-6 pt-4 border-t border-border/50">
+                    <a
                       href={`mailto:${location.email}`}
-                      className="inline-flex items-center text-primary hover:text-secondary transition-colors duration-300 font-medium"
+                      className="inline-flex items-center text-primary hover:text-primary/80 transition-colors duration-300 font-medium text-sm group/link"
                     >
                       Contact this office
-                      <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </a>
                   </div>
@@ -134,6 +157,11 @@ export default function Contact() {
               </div>
             </m.div>
           ))}
+        </div>
+
+        {/* Contact Form */}
+        <div className="mt-16 flex justify-center  w-full">
+          <ContactUsForm />
         </div>
       </div>
     </section>
